@@ -6,11 +6,11 @@ echo "setting flags..."
 while getopts d:e:m:v:c: flag
 do
     case "${flag}" in
-#    	d) domain=${OPTARG};;
-#        e) email=${OPTARG};;
-#        m) addmesh=${OPTARG};;
-#        v) addvpn=${OPTARG};;
-#        c) num_clients=${OPTARG};;
+   	d) domain=${OPTARG};;
+        e) email=${OPTARG};;
+        m) addmesh=${OPTARG};;
+        v) addvpn=${OPTARG};;
+        c) num_clients=${OPTARG};;
     esac
 done
 
@@ -82,7 +82,6 @@ MASTER_KEY=$(tr -dc A-Za-z0-9 </dev/urandom | head -c 30 ; echo '')
 echo "   ----------------------------"
 echo "                SETUP ARGUMENTS"
 echo "   ----------------------------"
-#echo "    coredns ip: $COREDNS_IP"
 echo "     public ip: $SERVER_PUBLIC_IP"
 echo "    master key: $MASTER_KEY"
 echo "   ----------------------------"
@@ -91,7 +90,6 @@ sleep 5
 
 wget -q -O docker-compose.yml https://raw.githubusercontent.com/HadokenLin/scripts/main/netmaker_0.9.4.yml
 sed -i "s/SERVER_PUBLIC_IP/$SERVER_PUBLIC_IP/g" docker-compose.yml
-#sed -i "s/COREDNS_IP/$COREDNS_IP/g" docker-compose.yml
 sed -i "s/REPLACE_MASTER_KEY/$MASTER_KEY/g" docker-compose.yml
 
 echo "starting containers..."
