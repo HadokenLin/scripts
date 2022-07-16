@@ -42,7 +42,7 @@ services:
     environment:
       BACKEND_URL: "http://SERVER_PUBLIC_IP:8081"
     restart: always
-    network_mode: host
+#    network_mode: host
   coredns:
     depends_on:
       - netmaker 
