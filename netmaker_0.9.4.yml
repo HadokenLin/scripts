@@ -4,32 +4,32 @@ services:
     container_name: netmaker
     image: gravitl/netmaker:v0.9.4
     volumes:
-      - ./dnsconfig:/root/config/dnsconfig
+      - dnsconfig:/root/config/dnsconfig
       - /usr/bin/wg:/usr/bin/wg
-      - ./netmaker/sqldata:/root/data
+      - /data/sqldata:/root/data
     cap_add: 
       - NET_ADMIN
     restart: always
     privileged: true
     network_mode: host
     environment:
-      SERVER_HOST: "106.55.35.239"
-      COREDNS_ADDR: "106.55.35.239"
+      SERVER_HOST: "SERVER_PUBLIC_IP"
+      COREDNS_ADDR: "SERVER_PUBLIC_IP"
       GRPC_SSL: "off"
       DNS_MODE: "on"
       API_PORT: "8081"
       GRPC_PORT: "50051"
       CLIENT_MODE: "on"
-      MASTER_KEY: "REPLACE_MASTER_KEY"
+      MASTER_KEY: "MASTER_KEY"
       SERVER_GRPC_WIREGUARD: "off"
       CORS_ALLOWED_ORIGIN: "*"
       DISPLAY_KEYS: "on"
       DATABASE: "sqlite"
       NODE_ID: "netmaker-server-1"
-    ports:
-      - "51821-51830:51821-51830/udp"
-      - "8081:8081"
-      - "50051:50051"
+#    ports:
+#      - "51821-51830:51821-51830/udp"
+#      - "8081:8081"
+#      - "50051:50051"
   netmaker-ui:
     container_name: netmaker-ui
     depends_on:
@@ -40,7 +40,7 @@ services:
     ports:
       - "80:80"
     environment:
-      BACKEND_URL: "http://106.55.35.239:8081"
+      BACKEND_URL: "http://SERVER_PUBLIC_IP:8081"
     restart: always
     network_mode: host
   coredns:
@@ -52,4 +52,6 @@ services:
     restart: always
     network_mode: host
     volumes:
-      - ./dnsconfig:/root/dnsconfig
+      - dnsconfig:/root/dnsconfig
+volumes:
+  dnsconfig: {}
