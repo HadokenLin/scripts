@@ -89,7 +89,7 @@ echo "   ----------------------------"
 
 sleep 5
 
-wget -q -O docker-compose.yml https://raw.githubusercontent.com/HadokenLin/scripts/main/netmaker_0.9.4.yml?token=GHSAT0AAAAAABVJAQHZPCF6BWDTFD6AZMGOYWS2YBA
+wget -q -O docker-compose.yml https://raw.githubusercontent.com/HadokenLin/scripts/main/netmaker_0.9.4.yml
 sed -i "s/SERVER_PUBLIC_IP/$SERVER_PUBLIC_IP/g" docker-compose.yml
 #sed -i "s/COREDNS_IP/$COREDNS_IP/g" docker-compose.yml
 sed -i "s/REPLACE_MASTER_KEY/$MASTER_KEY/g" docker-compose.yml
